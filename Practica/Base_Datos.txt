@@ -1,0 +1,45 @@
+Create Database PRACTICA1;
+
+Create Table PRODUCTOS(
+	ID_Producto int,
+	DESCRIPCION varchar(50) NOT NULL,
+	STOCKANUAL int,
+	PVP decimal(6,2),
+	PRIMARY KEY (ID_Producto)
+);	
+
+
+Create Table CLIENTES(
+	ID_Cliente int,
+	NOMBRE varchar(50) NOT NULL,
+	DIRECCION varchar(50),
+	POBLACION varchar(50),
+	TELEF varchar(9),
+	NIF varchar(10),
+	PRIMARY KEY (ID_Cliente)
+);
+
+Create Table VENTAS(
+	ID_Venta int,
+	FECHAVENTA DATE NOT NULL,
+	ID_Cliente int,
+	ID_Producto int,
+	CANTIDAD int, 
+	Ubicacion varchar(20),
+	PRIMARY KEY(ID_Venta),
+	FOREIGN KEY (ID_Cliente) REFERENCES CLIENTES(ID_Cliente)
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (ID_Producto) REFERENCES PRODUCTOS(ID_Producto)
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO clientes VALUES (1, 'Miguel', 'Una calle', 'Getafe', '1231412', 'asdasf');
+INSERT INTO clientes VALUES (2, 'Maroto', 'Una calle', 'Getafe', '1231412', 'asdasf');
+INSERT INTO clientes VALUES (3, ‘Diegote’, 'Una calle', 'Getafe', '1231412', 'asdasf');
+INSERT INTO clientes VALUES (4, ‘Zubieta’, 'Una calle', 'Getafe', '1231412', 'asdasf');
+
+INSERT INTO productos VALUES (1, 'Una cosa guay', 4 , 2.9);
+INSERT INTO productos VALUES (2, 'Una cosa guay', 4 , 2.9);
+INSERT INTO productos VALUES (3, 'Una cosa guay', 4 , 2.9);
+INSERT INTO productos VALUES (4, 'Una cosa guay', 4 , 2.9);
+INSERT INTO `ventas` (`ID_Venta`, `FECHAVENTA`, `ID_Cliente`, `ID_Producto`, `CANTIDAD`, `Ubicacion`) VALUES ('1', '2019-11-13', '1', '1', '1', 'Fuenlabrada'), ('2', '2019-11-19', '2', '2', '1', 'Getafe');
